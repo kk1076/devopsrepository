@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Recaptcha Demo";
+}
+
+<h2>Recaptcha Demo</h2>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+@using(Html.BeginForm("Index", "Demo", FormMethod.Post, new { id = "demoform" }))
+{
+    <h2>@ViewBag.Message</h2>
+    <span>@Html.Label("Name")</span>   @Html.TextBox("Enter your Name")
+    <span>@Html.Label("Class")</span>      @Html.TextBox("Enter your Class")
+    <button class="g-recaptcha"
+            data-sitekey="6LfdsVoUAAAAAIyW01RVESlTIkeq0guCnEjaVFUg"
+            data-callback="captchaCallBack">
+        Submit
+    </button>
+}
+
+<script type="text/javascript">
+    function captchaCallBack()
+    {
+        var a = document.getElementById("demoform");
+        a.submit();
+    }
+</script>
